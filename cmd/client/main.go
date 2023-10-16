@@ -2,7 +2,7 @@ package main
 
 import (
 	"context"
-	"github.com/loxt/go-grpc-server-streaming/pb"
+	pb "github.com/loxt/go-grpc-server-streaming/pb/proto/v1"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/credentials/insecure"
 	"log"
@@ -17,9 +17,9 @@ func main() {
 
 	defer conn.Close()
 
-	client := pb.NewHelloClient(conn)
+	client := pb.NewHelloServiceClient(conn)
 
-	req := &pb.HelloRequest{Name: "Loxt"}
+	req := &pb.SayHelloRequest{Name: "Loxt"}
 
 	res, err := client.SayHello(context.Background(), req)
 
